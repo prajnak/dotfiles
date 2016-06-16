@@ -1,4 +1,5 @@
 package config
+package emacs
 package thefuck
 package tmux-zen
 package wttr
@@ -10,6 +11,8 @@ theme default
 theme flash
 theme gianu
 theme gitstatus
+theme lambda
 theme mokou
 theme plain
 theme sushi
+theme syl20bnr
