@@ -1,0 +1,14 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+#	name = Prajna Kandarpa
+#	email = prajna.kandarpa@uwaterloo.ca
+[user]
+	name = Prajna Kandarpa
+	email = prajna.kandarpa@uwaterloo.ca
+[push]
+	default = simple
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f

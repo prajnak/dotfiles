@@ -1,0 +1,15 @@
+package config
+package thefuck
+package tmux-zen
+package wttr
+theme bobthefish
+theme budspencer
+theme cmorrell
+theme dangerous
+theme default
+theme flash
+theme gianu
+theme gitstatus
+theme mokou
+theme plain
+theme sushi
