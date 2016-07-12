@@ -1,7 +1,6 @@
 package config
 package emacs
 package thefuck
-package tmux-zen
 package wttr
 theme bobthefish
 theme budspencer

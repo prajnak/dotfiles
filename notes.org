@@ -1,0 +1,109 @@
+* Object Oriented programming in R
+
+## 
+** Base types
+All R base objects are structs implemented in C with the struct members including object contents, memory management info and a type which is the base type of an R object. Only the R core team can create new types. 
+```
+> f <- function() {}
+> typeof(f)
+[1] "closure"
+> f <- function() {}
+> is.function(f)
+[1] TRUE
+>   C-c C-c
+>  
+```
+S3 objects can be built on top of any base type. S4 objects use a special base type and Reference Classes are a combination of S4 and environments. Base types return `FALSE` for `is.object(x)`
+R Uses three different OO systems that differ in how classes and methods are defined.
+## 
+** S3
+*** Uses generic function OO. Different from Java, C++, C# which use message passing OO.
+    ```
+        drawRect(canvas, "blue") # canvas is an object
+    ```
+*** S3 methods belong to functions called generics and not to objects or classes. The function definition of an S3 generic usually include a call to UseMethod(), which figures out the method dispatch for the call.
+*** All the methods that belong to a generic maybe found using `methods()`. Use `getS3method()` to read the source code for most S3 methods.
+*** Defining classes in S3
+**** No formal definition of a class. So take an existing base object and set the class attributes.
+``` 
+    foo <- structure(list(), class="foo")   
+    #or this way
+    foo <- list()
+    class(foo) <- "foo"
+```
+Functions may also be turned into S3 objects. The methods `class` and `inherits` maybe used to object classes and inheritance for S3. The class of an S3 object can also be a character vector whose elements maybe used to determine the inheritance of an object. for example, the `class(glm)` expands to `c('glm','lm')`. 
+```
+> mod <- lm(log(mpg) ~ log(disp), data=mtcars)
+> class(mod)
+[1] "lm"
+> print(mod)
+
+Call:
+lm(formula = log(mpg) ~ log(disp), data = mtcars)
+
+Coefficients:
+(Intercept)    log(disp)  
+     5.3810      -0.4586  
+
+> class(mod) <- "data.frame"
+> print(mod)
+ [1] coefficients  residuals     effects       rank          fitted.values
+ [6] assign        qr            df.residual   xlevels       call         
+[11] terms         model        
+<0 rows> (or 0-length row.names)
+> 
+```
+Its easy to shoot yourself in the foot if you are not careful with R's type system.
+
+#### 
+*** Method Dispatch in S3
+**** UseMethod() creates a vector of function names like `paste0("generic", ".", c(class(x), default))` and looks for each in turn. The default class makes it possible to set up a fall back method for otherwise unknown classes.
+```
+> f <- function(x) UseMethod("f")
+> f.a <- function(x) "Class a"
+> f.default <- function(x) "Unknown class"
+> f(structure(list(), class="f"))
+[1] "Unknown class"
+> f(structure(list(), class="a"))
+[1] "Class a"
+> f(structure(list(), class=c("a", "b")))
+[1] "Class a"
+> f(structure(list(), class=c("c", "b")))
+[1] "Unknown class"
+> 
+```
+However, at the end of the day, a class generic method maybe overridden. As in, `f.a` maybe called on objects that are not of the class `a`.
+## 
+** S4
+is similar to S3 but is more formal. S4's formal class definitions describe representation and inheritance for each clas and has special helper functions for defining generics and methods.
+
+S4 Classes have formal definitions which describe their fields and inheritance structures. S4 objects, generics and methods can be identified by passing them to a `str()` call, which describes the class as a "formal" one. Other ways to determine the presence of an S4 class includes `isS4()`
+
+#### 
+*** Defining classes and creating objects
+One must define the representation of a class using the `setClass()` method and create a new object with `new`. Each S4 class has three key properties:
+    * name: alphanumeric class identifier
+    * a named list of slots(fields), which defines slot names and permitted classes. Ex: `list(name="character", age="numeric")`.
+    * A string giving the class it inherits from, or the one it contains. Can use multiple classes for multiple inheritance. but this is an advanced technique that adds much complexity.
+
+Creating new S4 classes
+```
+> setClass("Person", slots=list(name="character", age="numeric"))
+> alice <- new("Person", name="Alice", age=40)
+> alice
+An object of class "Person"
+Slot "name":
+[1] "Alice"
+
+Slot "age":
+[1] 40
+> 
+```
+
+Creating new metho
+*** Reference Classes
+implement message passing OO so methods belong to classes and not functions.
+    ```
+        canvas$drawRect("blue")
+    ```
+
