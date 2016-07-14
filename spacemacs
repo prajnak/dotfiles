@@ -67,6 +67,8 @@ values."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
+
+   dotspacemacs-default-theme 'minimal-light
    ;; If non nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
    ;; environment, otherwise it is strongly recommended to let it set to t.
@@ -251,6 +253,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (add-hook 'inferior-ess-mode-hook (defun personal/disable-comint-readonly ()
+                                      (setq comint-prompt-read-only nil)))
   )
 
 (defun dotspacemacs/user-config ()
