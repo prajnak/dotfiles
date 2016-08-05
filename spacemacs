@@ -68,7 +68,7 @@ values."
   ;; spacemacs settings.
   (setq-default
 
-   dotspacemacs-default-theme 'minimal-light
+   dotspacemacs-default-theme 'farmhouse-light
    ;; If non nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
    ;; environment, otherwise it is strongly recommended to let it set to t.
@@ -269,6 +269,7 @@ you should place your code here."
   (define-key global-map (kbd "C--") 'text-scale-decrease)
   (find-file "~/.dotfiles/notes.org")
   (find-file "~/.dotfiles/todo.org")
+  (visual-line-mode t)
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

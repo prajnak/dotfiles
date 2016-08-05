@@ -19,6 +19,7 @@ alias how2r="how2 -l r"
 alias relo="source ~/.config/fish/config.fish"
 alias e="emacsclient -c -n"
 alias vi="emacsclient -c -n"
+alias z="zathura"
 #sshfs compute1:/home/praj/pilots/bombardier ~/work/compute1/
 
 ### START-Keychain ###
