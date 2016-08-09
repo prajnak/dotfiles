@@ -42,6 +42,7 @@ values."
       syntax-checking
       version-control
       dockerfile
+      colors
       themes-megapack
      )
    ;; List of additional packages that will be installed without being
@@ -256,6 +257,19 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (add-hook 'inferior-ess-mode-hook (defun personal/disable-comint-readonly ()
                                       (setq comint-prompt-read-only nil)))
   (server-start)
+  (defun revert-all-buffers ()
+    "Refreshes all open buffers from their respective files"
+    (interactive)
+    (let* ((list (buffer-list))
+           (buffer (car list)))
+      (while buffer
+        (when (and (buffer-file-name buffer) 
+                   (not (buffer-modified-p buffer)))
+          (set-buffer buffer)
+          (revert-buffer t t t))
+        (setq list (cdr list))
+        (setq buffer (car list))))
+    (message "Refreshed open files"))
   )
 
 (defun dotspacemacs/user-config ()
