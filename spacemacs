@@ -281,8 +281,8 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (define-key global-map (kbd "C-+") 'text-scale-increase)
   (define-key global-map (kbd "C--") 'text-scale-decrease)
-  (find-file "~/.dotfiles/notes.org")
-  (find-file "~/.dotfiles/todo.org")
+  (find-file "~/.dotfiles/notes.org.gpg")
+  (find-file "~/.dotfiles/todo.org.gpg")
   (visual-line-mode t)
   )
 ;; Do not write anything past this comment. This is where Emacs will
