@@ -10,7 +10,8 @@ set -q XDG_DATA_HOME
 source $OMF_PATH/init.fish
 set -gx EDITOR "emacsclient -c"
 set -gx VISUAL "emacsclient -c"
-
+set -gx ALTERNATE_EDITOR "vim"
+set -gx SC_CLIENT_ID "4589b69100b99122a868b9180e869362"
 
 #alias lastcharge="syslog | grep magsafeStateChanged | tail -n 1"
 alias how2p="how2 -l python"

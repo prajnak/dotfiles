@@ -20,6 +20,7 @@ values."
    '(
      html
      javascript
+     typescript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -121,7 +122,7 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 11
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
