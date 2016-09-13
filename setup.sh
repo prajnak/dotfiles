@@ -29,4 +29,6 @@ sudo apt-get install xbacklight
 sudo apt-get install feh
 sudo apt-get install gnome-tweak-tool
 
+sudo apt-get install cmus
 
+sudo apt-get install pass

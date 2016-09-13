@@ -4,6 +4,11 @@
      write.table(x, con, sep=sep, row.names=row.names, col.names=col.names)
      close(con)
 }
+.env$makepackpdf <- function(packname) {
+    path <- find.package(packname)
+    system(paste(shQuote(file.path(R.home("bin"), "R")),
+    "CMD", "Rd2pdf", shQuote(path)))    
+}
 attach(.env)
 
 r <- getOption("repos")             # hard code the US repo for CRAN
