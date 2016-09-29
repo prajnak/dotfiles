@@ -16,3 +16,10 @@ r["CRAN"] <- "http://cran.us.r-project.org"
 options(repos = r)
 rm(r)
 
+workspace.size <- function() {
+  ws <- sum(sapply(ls(envir=globalenv()), function(x)object.size(get(x))))
+  class(ws) <- "object_size"
+  ws
+}
+
+options(width=150)
