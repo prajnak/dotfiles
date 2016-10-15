@@ -265,7 +265,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (add-hook 'inferior-ess-mode-hook (defun personal/disable-comint-readonly ()
                                       (setq comint-prompt-read-only nil)))
-  (server-start)
+  ;; (server-start)
 
   ;; (load "~/.dotfiles/secrets.el.gpg")
   (defun revert-all-buffers ()
