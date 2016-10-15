@@ -64,19 +64,22 @@ bindsym $mod+Return exec termite
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# reload xresources
+bindsym $mod+b exec xrdb ~/.Xresources
+
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec dmenu_run -fn 'Terminus-10' -nb '#021215' -nf '#657b83' -sb '#002b36' -sf '#93a1a1'
-#-width 30 -padding 10 -opacity "80" -bw 2 -bc "$base01" -bg "$base02" -location 2 -yoffset 122 -fg "$base07" -hlbg "$base01" -columns 1 -font "System San Francisco Display 12" -hlfg "#9575cd"
 # bindsym $mod+shift+f exec rofi -switchers "file:rofi-file-browser.sh" -show file
 
 ## Rofi launchers
-bindsym $mod+d exec rofi -show run -location 0 -width 30  -eh 3 -p '|' -opacity "90" -hide-scrollbar
-#bindsym $mod+shift+f exec rofi-file-finder.sh
-bindsym $mod+shift+f exec synapse
+# bindsym $mod+d exec rofi -show run,ssh -location 0 -width 30  -eh 3 -p '|' -opacity "90" -hide-scrollbar -line-margin 0 -padding 30
+bindsym $mod+d exec rofi -show run,ssh
+bindsym $mod+shift+f exec rofi-file-finder.sh
+# bindsym $mod+shift+f exec synapse
 bindsym $mod+shift+w exec rofi -show window -location 0 -width 50
 bindsym $mod+shift+p exec rofi-pass
-bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu -p "Desktop____" -location 0 -width 30 -padding 0 -eh 3 -opacity 90 -line-margin 0 -hide-scrollbar'
+bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu -p "_D_"'
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -211,8 +214,6 @@ bindsym $mod+Shift+Delete exec $scriptdir/shutdown_menu
 bindsym $mod+shift+x exec slock #$scriptdir/i3lock-extra -p 99 -m pixelize
 # -m img ~/Pictures/Wallpapers/1.png
 gaps inner 8
-gaps outer 3
-smart_borders on
 
 #smart_gaps on
 
@@ -326,11 +327,10 @@ exec --no-startup-id xrandr --output HDMI1 --auto --above eDP1
 exec --no-startup-id setxkbmap -option caps:ctrl_modifier
 exec --no-startup-id volti
 exec --no-startup-id gnome-settings-daemon
-exec --no-startup-id compton -f
+exec --no-startup-id compton -b
 exec --no-startup-id redshift
 exec --no-startup-id cmusfm init
 #exec --no-startup-id bash /home/praj/Zotero/run-zotero.sh
-#exec --no-startup-id emacs --daemon
 exec --no-startup-id gsettings set org.gnome.desktop.background show-desktop-icons false
 exec --no-startup-id gsettings set org.nemo.desktop show-desktop-icons false
 # exec --no-startup-id feh --bg-fill /home/praj/Pictures/Wallpapers/05\ -\ BuY28eQ.png

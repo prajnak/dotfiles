@@ -21,6 +21,7 @@ values."
      html
      ;; javascript
      typescript
+     slack
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -50,10 +51,15 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
+                                      (asana :location (recipe :fetcher github :repo "jcpetkovich/emacs-asana"))
                                       symon
+                                      writeroom-mode
+                                      polymode
+                                      clues-theme
                                       )
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(
+                                    evil-escape)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -69,7 +75,7 @@ values."
   ;; spacemacs settings.
   (setq-default
 
-   dotspacemacs-default-theme 'farmhouse-light
+   dotspacemacs-default-theme 'adwaita
    ;; If non nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
    ;; environment, otherwise it is strongly recommended to let it set to t.
@@ -108,8 +114,10 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   
-   dotspacemacs-themes '(solarized-light
+
+   dotspacemacs-themes '(adwaita
+                         tango-dark
+                         solarized-light
                          spacemacs-dark
                          spacemacs-light
                          solarized-dark
@@ -122,7 +130,7 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 12
+                               :size 11
                                :weight normal
                                :width normal
                                :powerline-scale 1.3)
@@ -258,21 +266,21 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (add-hook 'inferior-ess-mode-hook (defun personal/disable-comint-readonly ()
                                       (setq comint-prompt-read-only nil)))
   (server-start)
+
+  ;; (load "~/.dotfiles/secrets.el.gpg")
   (defun revert-all-buffers ()
     "Refreshes all open buffers from their respective files"
     (interactive)
     (let* ((list (buffer-list))
            (buffer (car list)))
       (while buffer
-        (when (and (buffer-file-name buffer) 
+        (when (and (buffer-file-name buffer)
                    (not (buffer-modified-p buffer)))
           (set-buffer buffer)
           (revert-buffer t t t))
         (setq list (cdr list))
         (setq buffer (car list))))
     (message "Refreshed open files"))
-  )
-
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -282,10 +290,38 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (define-key global-map (kbd "C-+") 'text-scale-increase)
   (define-key global-map (kbd "C--") 'text-scale-decrease)
-  (find-file "~/.dotfiles/notes.org.gpg")
-  (find-file "~/.dotfiles/todo.org.gpg")
+  ;; (find-file "~/.dotfiles/notes.org.gpg")
+  ;; (find-file "~/.dotfiles/todo.org.gpg")
   (visual-line-mode t)
+  (defun slack-file-upload-wrap ()
+    (interactive)
+    (let ((completing-read-function 'completing-read-default))
+      (slack-file-upload)))
+
+  (spacemacs/set-leader-keys-for-major-mode 'slack-mode
+    "f" 'slack-file-upload)
+  (slack-register-team
+   :name "acertateam"
+   :default t
+   :client-id slackid
+   :client-secret slacksecret
+   :token slacktoken
+   :subscribed-channels '(general slackbot analytics jcpetkovich analytics bitbucket)
+   ))
+
+  (setq-default alert-default-style 'libnotify)
+  ;;(bind-keys ([remap slack-file-upload] . slack-file-upload-wrap))
+  (defun personal/init-writeroom-mode ()
+  (use-package writeroom-mode :defer t :commands writeroom-mode :init
+    (evil-leader/set-key "wn" 'writeroom-mode)))
+
   )
+
+(defun slack/post-init-alert ()
+  (use-package alert
+    :defer t
+    :init (setq alert-default-style 'libnotify)))
+
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
