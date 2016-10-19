@@ -29,9 +29,9 @@ set $base0F #fcc09e
 
 set $bgfile /home/praj/Pictures/Wallpapers/ 05\ -\ BuY28eQ.png  
 set $scriptdir /home/praj/.i3/i3blocks/blocks
-set $rofitheme '-padding 10 -opacity "80" -bw 2 -bc "$base01" -bg "$base02" -location 2 -yoffset 122 -fg "$base07" -hlbg "$base01" -columns 6 -font "System San Francisco Display 12" -hlfg "#9575cd"'
 new_window normal 0 px
 for_window [class="^.*"] border pixel 1
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -39,24 +39,16 @@ for_window [class="^.*"] border pixel 1
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-# font pango:DejaVu Sans Mono 10
-# font xft:Source Code Pro 10
 font pango:System San Francisco Display 9
-
-
-# # set some nice colors      border		   background	   text
-# client.focused              #2aa198        #2aa198         #eee895
-# client.unfocused            #021215        #021215         #586e75
-# client.focused_inactive     #073642        #073642         #839496
 
 
 client.focused          $base01 $base01    $base07 $base0F
 client.focused_inactive $base02 $base02    $base03 $base0F
 client.unfocused        $base02 $base02    $base03 $base0F
 client.urgent           $base02 $base08    $base00 $base0F
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-
 
 # start a terminal
 bindsym $mod+Return exec termite
@@ -74,7 +66,9 @@ bindsym $mod+b exec xrdb ~/.Xresources
 
 ## Rofi launchers
 # bindsym $mod+d exec rofi -show run,ssh -location 0 -width 30  -eh 3 -p '|' -opacity "90" -hide-scrollbar -line-margin 0 -padding 30
-bindsym $mod+d exec rofi -show run,ssh
+
+bindsym $mod+shift+s exec teiler
+bindsym $mod+d exec rofi -show run -prompt "___"
 bindsym $mod+shift+f exec rofi-file-finder.sh
 # bindsym $mod+shift+f exec synapse
 bindsym $mod+shift+w exec rofi -show window -location 0 -width 50
@@ -327,6 +321,10 @@ exec --no-startup-id xrandr --output HDMI1 --auto --above eDP1
 exec --no-startup-id setxkbmap -option caps:ctrl_modifier
 exec --no-startup-id volti
 exec --no-startup-id gnome-settings-daemon
+
+## lock screen after suspends and hibernates
+exec --no-startup-id xss-lock --slock
+
 exec --no-startup-id compton -b
 exec --no-startup-id redshift
 exec --no-startup-id cmusfm init

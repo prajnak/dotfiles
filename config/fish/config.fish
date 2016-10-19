@@ -41,6 +41,44 @@ alias pt="sudo powertop"
 alias rfind='rofi -switchers "file:rofi-file-browser.sh" -show file'
 
 # alias clipboard='xclip -se c'
+
+
+
+#============================
+#       A B B R E V         # 
+#============================
+abbr -a pkc pkill compton
+
+abbr -a g='git'
+abbr -a gs='git status -b'
+abbr -a gh='git head'
+
+abbr -a gl='git pull -v'
+abbr -a gp='git push -v'
+abbr -a gll='git log --graph --pretty=oneline --abbrev-commit'
+abbr -a gg='git log --graph --abbrev-commit --date=relative'
+abbr -a ggs='git log --graph --abbrev-commit --date=relative --stat'
+abbr -a gw='git whatchanged'
+
+abbr -a gd='git diff'
+abbr -a gdt='git difftool'
+abbr -a gdc='git diff --cached'
+abbr -a gdw='git diff --color-words'
+abbr -a gds='git diff --stat'
+
+abbr -a ga='git add'
+abbr -a gc='git commit -v'
+abbr -a gca='git commit -v -a'
+abbr -a gb='git branch'
+abbr -a gco='git checkout'
+abbr -a gf='git fetch'
+abbr -a gfa='git fetch --all'
+abbr -a gm='git merge'
+abbr -a gr='git rebase'
+abbr -a gcp='git cherry-pick'
+abbr -a gpr='git-pull-request'
+abbr -a glo='git log --show-signature'
+
 ### START-Keychain ###
 # Let  re-use ssh-agent and/or gpg-agent between logins
 #/usr/bin/keychain $HOME/.ssh/id_rsa
