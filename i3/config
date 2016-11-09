@@ -53,6 +53,9 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec termite
 
+# start emacs client
+bindsym $mod+e exec emacsclient -n -c
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -88,7 +91,7 @@ bindsym $mod+k focus down
 bindsym $mod+semicolon focus right
 
 # move workspace between displays
-bindsym $mod+m move workspace to output left
+bindsym $mod+shift+m move workspace to output left
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -120,7 +123,7 @@ bindsym $mod+f fullscreen
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+shift+e layout toggle split
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 # toggle tiling / floating
@@ -197,7 +200,7 @@ bindsym $mod+minus scratchpad show
 # for_window [title="cava"] move right; resize shrink right 31px or 31 ppt
 for_window [class="termite"] move workspace $workspace1
 # # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+i reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -206,9 +209,13 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # bindsym $mod+Shift+x exec ~/.i3/i3blocks/blocks/i3lock-extra -m img ~/Pictures/Wallpapers/1.png -m blur
 bindsym $mod+Shift+Delete exec $scriptdir/shutdown_menu
 bindsym $mod+shift+x exec slock #$scriptdir/i3lock-extra -p 99 -m pixelize
+
+bindsym $mod+shift+c exec ~/.dotfiles/roficalc
+
+
 # -m img ~/Pictures/Wallpapers/1.png
 gaps inner 8
-
+gaps outer 8
 #smart_gaps on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
@@ -282,12 +289,13 @@ bar {
         status_command i3blocks
         # font pango:DejaVu Sans Mono, Awesome 12
         # mode hide
+        modifier $mod
         height 25
         font pango: System San Francisco Display, FontAwesome 9
         position bottom
         colors {
         separator $base07
-        background $base01
+        background $base02
         statusline $base07
         #                        border  background text
         focused_workspace  $base01 $base01    $base07
@@ -316,21 +324,20 @@ bindsym XF86Display exec arandr
 # bindsym XF86AudioNext exec playerctl next
 # bindsym XF86AudioPrev exec playerctl previous
 
+exec --no-startup-id /home/praj/i3-alternating-layout/alternating_layouts.py
 exec --no-startup-id nm-applet
 exec --no-startup-id xrandr --output HDMI1 --auto --above eDP1
 exec --no-startup-id setxkbmap -option caps:ctrl_modifier
 exec --no-startup-id volti
 exec --no-startup-id gnome-settings-daemon
-
 ## lock screen after suspends and hibernates
-exec --no-startup-id xss-lock --slock
+exec --no-startup-id xss-lock -- slock
 
-exec --no-startup-id compton -b
+# exec --no-startup-id compton -b
 exec --no-startup-id redshift
 exec --no-startup-id cmusfm init
 #exec --no-startup-id bash /home/praj/Zotero/run-zotero.sh
 exec --no-startup-id gsettings set org.gnome.desktop.background show-desktop-icons false
 exec --no-startup-id gsettings set org.nemo.desktop show-desktop-icons false
-# exec --no-startup-id feh --bg-fill /home/praj/Pictures/Wallpapers/05\ -\ BuY28eQ.png
 exec --no-startup-id gsettings set org.gnome.settings-daemon.plugins.mouse active false
-
+exec --no-startup-id mutate

@@ -18,6 +18,12 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     sql
+     python
+     ipython-notebook
+     ruby
+     go
+     (scala :variables scala-auto-start-ensime t)
      html
      ;; javascript
      typescript
@@ -38,13 +44,13 @@ values."
      ;; dash
      org
      (shell :variables
-             shell-default-height 30
-             shell-default-position 'bottom)
-      spell-checking
-      syntax-checking
-      version-control
-      ;; dockerfile
-      colors
+            shell-default-height 30
+            shell-default-position 'bottom)
+     spell-checking
+     syntax-checking
+     version-control
+     ;; dockerfile
+     colors
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -75,7 +81,7 @@ values."
   ;; spacemacs settings.
   (setq-default
 
-   dotspacemacs-default-theme 'adwaita
+   dotspacemacs-default-theme 'clues
    ;; If non nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
    ;; environment, otherwise it is strongly recommended to let it set to t.
@@ -115,11 +121,12 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
 
-   dotspacemacs-themes '(adwaita
+   dotspacemacs-themes '(spacemacs-light
+                         adwaita
                          tango-dark
                          solarized-light
                          spacemacs-dark
-                         spacemacs-light
+                         clues
                          solarized-dark
                          leuven
                          ir-black
@@ -130,7 +137,7 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 11
+                               :size 12
                                :weight normal
                                :width normal
                                :powerline-scale 1.3)
@@ -281,46 +288,47 @@ before packages are loaded. If you are unsure, you should try in setting them in
         (setq list (cdr list))
         (setq buffer (car list))))
     (message "Refreshed open files"))
-(defun dotspacemacs/user-config ()
-  "Configuration function for user code.
+  (defun dotspacemacs/user-config ()
+    "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  (define-key global-map (kbd "C-+") 'text-scale-increase)
-  (define-key global-map (kbd "C--") 'text-scale-decrease)
-  ;; (find-file "~/.dotfiles/notes.org.gpg")
-  ;; (find-file "~/.dotfiles/todo.org.gpg")
-  (visual-line-mode t)
-  (defun slack-file-upload-wrap ()
-    (interactive)
-    (let ((completing-read-function 'completing-read-default))
-      (slack-file-upload)))
+    (define-key global-map (kbd "C-+") 'text-scale-increase)
+    (define-key global-map (kbd "C--") 'text-scale-decrease)
+    ;; (find-file "~/.dotfiles/notes.org.gpg")
+    ;; (find-file "~/.dotfiles/todo.org.gpg")
+    (visual-line-mode t)
+    ;; (defun slack-file-upload-wrap ()
+    ;;   (interactive)
+    ;;   (let ((completing-read-function 'completing-read-default))
+    ;;     (slack-file-upload)))
 
-  (spacemacs/set-leader-keys-for-major-mode 'slack-mode
-    "f" 'slack-file-upload)
-  (slack-register-team
-   :name "acertateam"
-   :default t
-   :client-id slackid
-   :client-secret slacksecret
-   :token slacktoken
-   :subscribed-channels '(general slackbot analytics jcpetkovich analytics bitbucket)
-   ))
+    ;; (spacemacs/set-leader-keys-for-major-mode 'slack-mode
+    ;;   "f" 'slack-file-upload)
+    ;; (slack-register-team
+    ;;  :name "acertateam"
+    ;;  :default t
+    ;;  :client-id slackid
+    ;;  :client-secret slacksecret
+    ;;  :token slacktoken
+    ;;  :subscribed-channels '(general slackbot analytics jcpetkovich analytics bitbucket)
+    ;;  )
+    ;; (setq-default alert-default-style 'libnotify)
+    ;; ;;(bind-keys ([remap slack-file-upload] . slack-file-upload-wrap))
+    (defun personal/init-writeroom-mode ()
+      (use-package writeroom-mode :defer t :commands writeroom-mode :init
+        (evil-leader/set-key "wn" 'writeroom-mode)))
+    ;; (go :variables go-tab-width 4)
 
-  (setq-default alert-default-style 'libnotify)
-  ;;(bind-keys ([remap slack-file-upload] . slack-file-upload-wrap))
-  (defun personal/init-writeroom-mode ()
-  (use-package writeroom-mode :defer t :commands writeroom-mode :init
-    (evil-leader/set-key "wn" 'writeroom-mode)))
-
+    )
   )
 
-(defun slack/post-init-alert ()
-  (use-package alert
-    :defer t
-    :init (setq alert-default-style 'libnotify)))
+;; (defun slack/post-init-alert ()
+;;   (use-package alert
+;;     :defer t
+;;     :init (setq alert-default-style 'libnotify)))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -329,6 +337,7 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(alert-default-style (quote libnotify))
  '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

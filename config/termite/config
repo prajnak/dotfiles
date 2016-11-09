@@ -40,7 +40,7 @@ color7  = #c5c8c6
 color15 = #ffffff
 
 [options]
-font = Inconsolata-dz for Powerline 9
+font = Inconsolata-dz for Powerline 10
 clickable_url = true
 browser = firefox
 
