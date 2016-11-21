@@ -3,6 +3,11 @@ set -q XDG_DATA_HOME
   and set -gx OMF_PATH "$XDG_DATA_HOME/omf"
   or set -gx OMF_PATH "$HOME/.local/share/omf"
 
+if status --is-interactive
+  keychain --quiet -Q ~/.ssh/id_rsa
+end
+
+set  fish_theme_l_right_prompt true
 # Customize Oh My Fish configuration path.
 #set -gx OMF_CONFIG "/Users/pulsar/.config/omf"
 
@@ -22,6 +27,7 @@ set -gx GTK_IM_MODULE ' '
 set -gx GOPATH '/home/praj/go'
 set -gx PSYNC_HOME '/usr/local/polysync'
 set -gx WORKON_HOME '/home/praj/.virtualenvs'
+set -gx TERM screen-256color
 
 #============================
 #       A B B R E V         # 
@@ -29,7 +35,9 @@ set -gx WORKON_HOME '/home/praj/.virtualenvs'
 abbr -a pkc pkill compton
 abbr -a f feh
 abbr -a z zathura
+abbr -a c clear
 
+abbr -a tl1 tree -L 1
 abbr -a serv sudo service
 abbr -a sysen sudo systemctl enable
 abbr -a sysdis sudo systemctl disable

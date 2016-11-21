@@ -18,6 +18,8 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     csv
+     javascript
      sql
      python
      ipython-notebook
@@ -121,13 +123,13 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
 
-   dotspacemacs-themes '(spacemacs-light
+   dotspacemacs-themes '(solarized-dark
                          adwaita
                          tango-dark
-                         solarized-light
+                         spacemacs-light
                          spacemacs-dark
                          clues
-                         solarized-dark
+                         solarized-light
                          leuven
                          ir-black
                          monokai
@@ -136,7 +138,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Anonymous Pro For Powerline"
                                :size 12
                                :weight normal
                                :width normal
@@ -338,6 +340,8 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(alert-default-style (quote libnotify))
+ '(asana-my-tasks-project-id 181934175878135 t)
+ '(asana-selected-workspace (quote ((name . "acerta.ca") (id . 181854447419726))) t)
  '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

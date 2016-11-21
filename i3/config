@@ -39,7 +39,7 @@ for_window [class="^.*"] border pixel 1
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:System San Francisco Display 9
+font pango:System San Francisco Display 13
 
 
 client.focused          $base01 $base01    $base07 $base0F
@@ -52,6 +52,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec termite
+bindsym $Mod+t exec termite -e "tmux attach"
 
 # start emacs client
 bindsym $mod+e exec emacsclient -n -c
@@ -123,7 +124,7 @@ bindsym $mod+f fullscreen
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+shift+e layout toggle split
+bindsym $mod+g layout toggle split
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 # toggle tiling / floating
@@ -214,8 +215,8 @@ bindsym $mod+shift+c exec ~/.dotfiles/roficalc
 
 
 # -m img ~/Pictures/Wallpapers/1.png
-gaps inner 8
-gaps outer 8
+gaps inner 0
+gaps outer 0
 #smart_gaps on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
@@ -288,7 +289,7 @@ bar {
         # i3bar_command i3bar -t
         status_command i3blocks
         # font pango:DejaVu Sans Mono, Awesome 12
-        # mode hide
+        mode hide
         modifier $mod
         height 25
         font pango: System San Francisco Display, FontAwesome 9
@@ -304,10 +305,14 @@ bar {
         urgent_workspace   $base01 $base01    $base08
         }
 }
+
 # Audio controls
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-# bindsym XF86AudioMute exec amixer -q set Master toggle
+# bindsym XF86AudioMute exec "/home/praj/.local/bin/vol.sh m"
+# bindsym XF86AudioRaiseVolume exec /home/praj/.local/bin/vol.sh i 10
+# bindsym XF86AudioLowerVolume exec vol.sh d 10
+
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
@@ -324,7 +329,7 @@ bindsym XF86Display exec arandr
 # bindsym XF86AudioNext exec playerctl next
 # bindsym XF86AudioPrev exec playerctl previous
 
-exec --no-startup-id /home/praj/i3-alternating-layout/alternating_layouts.py
+exec /home/praj/i3-alternating-layout/alternating_layouts.py
 exec --no-startup-id nm-applet
 exec --no-startup-id xrandr --output HDMI1 --auto --above eDP1
 exec --no-startup-id setxkbmap -option caps:ctrl_modifier
@@ -333,6 +338,8 @@ exec --no-startup-id gnome-settings-daemon
 ## lock screen after suspends and hibernates
 exec --no-startup-id xss-lock -- slock
 
+
+exec --no-startup-id dunst -config /home/praj/.config/dunst/dunstrc
 # exec --no-startup-id compton -b
 exec --no-startup-id redshift
 exec --no-startup-id cmusfm init
@@ -340,4 +347,3 @@ exec --no-startup-id cmusfm init
 exec --no-startup-id gsettings set org.gnome.desktop.background show-desktop-icons false
 exec --no-startup-id gsettings set org.nemo.desktop show-desktop-icons false
 exec --no-startup-id gsettings set org.gnome.settings-daemon.plugins.mouse active false
-exec --no-startup-id mutate

@@ -12,3 +12,7 @@
 	required = true
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
+[init]
+	templatedir = /home/praj/.git-templates
+[url "git@bitbucket.org:"]
+	insteadOf = https://bitbucket.org/
