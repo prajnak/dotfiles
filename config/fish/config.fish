@@ -19,6 +19,7 @@ source $OMF_PATH/init.fish
 #==============================
 set -U fish_user_paths /home/praj/.cargo/bin /usr/local/go/bin /home/praj/go/bin /home/praj/.cabal/bin /home/praj/.local/bin
 
+set -U fish_greeting 
 ## environment variables
 set -gx EDITOR "emacsclient -c"
 set -gx VISUAL "emacsclient -c"
@@ -37,6 +38,7 @@ abbr -a f feh
 abbr -a z zathura
 abbr -a c clear
 
+abbr -a aserv cd $GOPATH/src/bitbucket.org/acerta/aserver
 abbr -a tl1 tree -L 1
 abbr -a serv sudo service
 abbr -a sysen sudo systemctl enable

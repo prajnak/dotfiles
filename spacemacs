@@ -140,7 +140,7 @@ values."
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Anonymous Pro For Powerline"
                                :size 12
-                               :weight normal
+                               :weight bold
                                :width normal
                                :powerline-scale 1.3)
    ;; The leader key

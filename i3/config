@@ -29,8 +29,8 @@ set $base0F #fcc09e
 
 set $bgfile /home/praj/Pictures/Wallpapers/ 05\ -\ BuY28eQ.png  
 set $scriptdir /home/praj/.i3/i3blocks/blocks
-new_window normal 0 px
-for_window [class="^.*"] border pixel 1
+new_window normal 4 px
+for_window [class="^.*"] border pixel 4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -282,7 +282,7 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-hide_edge_borders vertical
+#hide_edge_borders vertical
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
