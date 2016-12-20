@@ -24,7 +24,7 @@ values."
      python
      ipython-notebook
      ruby
-     go
+     (go :variables go-tab-width 4)
      (scala :variables scala-auto-start-ensime t)
      html
      ;; javascript
@@ -100,7 +100,7 @@ values."
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
    ;; unchanged. (default 'vim)
-   dotspacemacs-editing-style 'vim
+   dotspacemacs-editing-style 'hybrid
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -123,13 +123,13 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
 
-   dotspacemacs-themes '(solarized-dark
+   dotspacemacs-themes '(solarized-light
                          adwaita
                          tango-dark
                          spacemacs-light
                          spacemacs-dark
                          clues
-                         solarized-light
+                         solarized-dark
                          leuven
                          ir-black
                          monokai

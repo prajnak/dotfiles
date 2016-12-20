@@ -3,9 +3,9 @@ set -q XDG_DATA_HOME
   and set -gx OMF_PATH "$XDG_DATA_HOME/omf"
   or set -gx OMF_PATH "$HOME/.local/share/omf"
 
-if status --is-interactive
-  keychain --quiet -Q ~/.ssh/id_rsa
-end
+# if status --is-interactive
+#   keychain --quiet -Q ~/.ssh/id_rsa
+# end
 
 set  fish_theme_l_right_prompt true
 # Customize Oh My Fish configuration path.
@@ -17,7 +17,7 @@ source $OMF_PATH/init.fish
 #==============================
 #       E X P O R T S         #
 #==============================
-set -U fish_user_paths /home/praj/.cargo/bin /usr/local/go/bin /home/praj/go/bin /home/praj/.cabal/bin /home/praj/.local/bin
+set -U fish_user_paths /home/praj/.cargo/bin /usr/local/go/bin /home/praj/go/bin /home/praj/.cabal/bin /home/praj/.local/bin /home/praj/.npm-global/bin
 
 set -U fish_greeting 
 ## environment variables
@@ -37,15 +37,18 @@ abbr -a pkc pkill compton
 abbr -a f feh
 abbr -a z zathura
 abbr -a c clear
+abbr -a pgc ping google.ca
+abbr -a ssnr sudo service network-manager restart
+abbr -a ssns sudo service network-manager status
 
-abbr -a aserv cd $GOPATH/src/bitbucket.org/acerta/aserver
+abbr -a aserv cd $GOPATH/src/bitbucket.org/acerta/ces
 abbr -a tl1 tree -L 1
 abbr -a serv sudo service
 abbr -a sysen sudo systemctl enable
-abbr -a sysdis sudo systemctl disable
-abbr -a systop sudo systemctl stop
-abbr -a systart sudo systemctl start
-abbr -a status sudo systemctl status
+# abbr -a sysdis sudo systemctl disable
+# abbr -a systop sudo systemctl stop
+# abbr -a systart sudo systemctl start
+# abbr -a status sudo systemctl status
 
 abbr -a e emacsclient -c -n
 abbr -a ec emacsclient -nw
@@ -65,32 +68,32 @@ abbr -a how2go how2 -l go
 abbr -a relo source ~/.config/fish/config.fish
 # abbr -a rfind rofi -switchers "file:rofi-file-browser.sh" -show file
 
-abbr -a g='git'
+# abbr -a g='git'
 abbr -a gs='git status -b'
-abbr -a gh='git head'
+# abbr -a gh='git head'
 
-abbr -a gl='git pull -v'
-abbr -a gp='git push -v'
+# abbr -a gl='git pull -v'
+# abbr -a gp='git push -v'
 abbr -a gll='git log --graph --pretty=oneline --abbrev-commit'
 abbr -a gg='git log --graph --abbrev-commit --date=relative'
 abbr -a ggs='git log --graph --abbrev-commit --date=relative --stat'
 abbr -a gw='git whatchanged'
 
-abbr -a gd='git diff'
-abbr -a gdt='git difftool'
-abbr -a gdc='git diff --cached'
-abbr -a gdw='git diff --color-words'
-abbr -a gds='git diff --stat'
+# abbr -a gd='git diff'
+# abbr -a gdt='git difftool'
+# abbr -a gdc='git diff --cached'
+# abbr -a gdw='git diff --color-words'
+# abbr -a gds='git diff --stat'
 
-abbr -a ga='git add'
-abbr -a gc='git commit -v'
-abbr -a gca='git commit -v -a'
-abbr -a gb='git branch'
-abbr -a gco='git checkout'
-abbr -a gf='git fetch'
-abbr -a gfa='git fetch --all'
-##abbr -a gm='git merge'
-abbr -a gr='git rebase'
-abbr -a gcp='git cherry-pick'
-abbr -a gpr='git-pull-request'
-abbr -a glo='git log --show-signature'
+# abbr -a ga='git add'
+# abbr -a gc='git commit -v'
+# abbr -a gca='git commit -v -a'
+# abbr -a gb='git branch'
+# abbr -a gco='git checkout'
+# abbr -a gf='git fetch'
+# abbr -a gfa='git fetch --all'
+# ##abbr -a gm='git merge'
+# abbr -a gr='git rebase'
+# abbr -a gcp='git cherry-pick'
+# abbr -a gpr='git-pull-request'
+# abbr -a glo='git log --show-signature'
