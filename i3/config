@@ -291,7 +291,7 @@ bar {
         # font pango:DejaVu Sans Mono, Awesome 12
         # mode hide
         modifier $mod
-        height 25
+        height 20
         font pango: System San Francisco Display, FontAwesome 9
         position bottom
         colors {
@@ -319,6 +319,8 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 bindsym XF86Display exec arandr
+
+## make the f10 key not a media key
 
 # Touchpad controls
 #bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
