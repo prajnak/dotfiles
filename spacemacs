@@ -139,7 +139,7 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Anonymous Pro For Powerline"
-                               :size 13
+                               :size 14
                                :weight bold
                                :width normal
                                :powerline-scale 1.3)
