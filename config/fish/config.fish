@@ -14,6 +14,10 @@ set  fish_theme_l_right_prompt true
 # Load oh-my-fish configuration.
 source $OMF_PATH/init.fish
 
+function youstr
+  youtube-dl -q -o - "$argv[1]" | mpv -
+end
+
 #==============================
 #       E X P O R T S         #
 #==============================
@@ -38,6 +42,7 @@ abbr -a f feh
 abbr -a z zathura
 abbr -a c clear
 abbr -a pgc ping google.ca
+abbr -a ripme java -jar ~/.local/bin/ripme.jar 
 abbr -a ssnr sudo service network-manager restart
 abbr -a ssns sudo service network-manager status
 
