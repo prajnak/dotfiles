@@ -27,14 +27,8 @@ values."
      (go :variables go-tab-width 4)
      (scala :variables scala-auto-start-ensime t)
      html
-     ;; javascript
      typescript
      slack
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
      auto-completion
      better-defaults
      ;; emacs-lisp
@@ -43,7 +37,6 @@ values."
      latex
      shell-scripts
      markdown
-     ;; dash
      org
      (shell :variables
             shell-default-height 30
@@ -51,7 +44,6 @@ values."
      spell-checking
      syntax-checking
      version-control
-     ;; dockerfile
      colors
      )
    ;; List of additional packages that will be installed without being
@@ -302,6 +294,9 @@ you should place your code here."
     ;; (find-file "~/.dotfiles/notes.org.gpg")
     ;; (find-file "~/.dotfiles/todo.org.gpg")
     (visual-line-mode t)
+    (setq eclim-eclipse-dirs "~/opt/eclipse"
+          eclim-executable "~/.local/bin/eclim"
+          eclimd-executable "~/.local/bin/eclimd")
     ;; (defun slack-file-upload-wrap ()
     ;;   (interactive)
     ;;   (let ((completing-read-function 'completing-read-default))

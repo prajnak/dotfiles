@@ -18,10 +18,14 @@ function youstr
   youtube-dl -q -o - "$argv[1]" | mpv -
 end
 
+function ydl2mp3
+  youtube-dl --extract-audio --audio-format mp3 "$argv[1]"
+ end
+
 #==============================
 #       E X P O R T S         #
 #==============================
-set -U fish_user_paths /home/praj/.cargo/bin /usr/local/go/bin /home/praj/go/bin /home/praj/.cabal/bin /home/praj/.local/bin /home/praj/.npm-global/bin
+set -U fish_user_paths /home/praj/.cargo/bin /usr/local/go/bin /home/praj/go/bin /home/praj/.cabal/bin /home/praj/.local/bin /home/praj/.npm-global/bin "/home/praj/apache-maven-3.3.9/bin"
 
 set -U fish_greeting 
 ## environment variables
@@ -45,8 +49,8 @@ abbr -a pgc ping google.ca
 abbr -a ripme java -jar ~/.local/bin/ripme.jar 
 abbr -a ssnr sudo service network-manager restart
 abbr -a ssns sudo service network-manager status
+abbr -a ydl youtube-dl
 
-abbr -a aserv cd $GOPATH/src/bitbucket.org/acerta/ces
 abbr -a tl1 tree -L 1
 abbr -a serv sudo service
 abbr -a sysen sudo systemctl enable
