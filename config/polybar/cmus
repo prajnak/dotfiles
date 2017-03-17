@@ -15,6 +15,6 @@ elif [[ "${INFO_TITLE}" ]]; then
   OUT_TEXT=$(echo "${INFO_TITLE}" | xargs)
 fi
 
-echo "${OUT_TEXT}"
+echo " ${OUT_TEXT}"
 echo "${OUT_TEXT}"
 exit
