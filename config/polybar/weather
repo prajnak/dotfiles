@@ -3,7 +3,7 @@
 import urllib.request, json
 
 city = "Visakhapatnam"
-api_key = "***REMOVED***" 
+api_key = "3cfad899a62da45a756a0039d8833abc" 
 
 weather = eval(str(urllib.request.urlopen("http://api.openweathermap.org/data/2.5/weather?q={}&APPID={}".format(city, api_key)).read())[2:-1])
 
