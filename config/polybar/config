@@ -2,7 +2,6 @@
 
 [global/wm]
 margin-top = 5
-margin-bottom = 5
 
 
 [colors]
@@ -14,61 +13,70 @@ blue = #95aec7
 yellow = #c7ae95
 green = #aec795
 
+[backcols]
+i3b = #FFA400
+i3f = #EAF6FF
+fs = #009FFD
+mt = #2A6F72
+hot = #C11B5D
 
 [bar/Bar]
-bottom = true
-dock = false
+bottom = top
 wm-restack = i3
+override-redirect=false
 width = 100%
-height = 22
-
+height = 25
 enable-ipc = true
 
-padding-left = 0
-padding-right = 1
+modules-right = date volume filesystem backlight temperature memory battery battery1 menu0 
+modules-center = i3 xwindow
+modules-left = mpd   
 
-module-margin-right = 3
+
+background = 
+foreground = #f2f2f2
+
+enable-click = true
+index-sort = true
+overline-size = 2
+overline-color = #bc92f8
+spacing = 1
+padding-right = 2
 module-margin-left = 0
-
-modules-right = cmus volume filesystem wlan eth backlight temperature cpu memory battery battery1 date menu0 
-modules-center = xwindow 
-modules-left = i3 
-
-background = ${colors.black}
-foreground = ${colors.white}
+module-margin-right = 2
 
 underline-size = 3
 underline-color = ${colors.gray}
 
 tray-detached = false
 tray-position = right
-tray-offset-x = 
-tray-maxsize = 
-tray-padding = 
 
-; font-0 = terminus:size=10;0
-font-0 = FontAwesome:size=10;0
-font-1 = TakaoGothic:weight=bold:size=10;0
-font-2 = FontAwesome:size=10;0
+font-0 = terminus:size=9;0
+font-1 = FontAwesome:size=10;0
+font-2 = TakaoGothic:size=9;0
 
 [module/xwindow]
 type = internal/xwindow
 label = %title%
-label-maxlen = 15
-label-mounted-underline = ${colors.white}
-label-mounted-padding = 1
+label-maxlen = 30
+format-foreground = ${colors.black}
+format-background = ${backcols.i3b}
+format-underline = ${colors.black}
+format-padding = 1
+label-font = 3
 
 [module/filesystem]
 type = internal/fs
-interval = 25
+interval = 125
 
 mount-0 = /
 ;mount-1 = /home
 ;mount-2 = /invalid/mountpoint
-
+label-mounted-background = ${backcols.i3f}
 label-mounted =  %free%
-label-mounted-underline = ${colors.white}
+label-mounted-underline = ${colors.black}
 label-mounted-padding = 1
+label-mounted-foreground = ${colors.black}
 
 label-unmounted =
 label-unmounted-foreground = ${colors.black}
@@ -96,33 +104,44 @@ label-empty-padding = 2
 
 
 [module/i3]
+ws-icon-0 = term;
+ws-icon-1 = chr; 
+ws-icon-2 = emacs;
+ws-icon-3 = im;
+ws-icon-4 = music;
+ws-icon-5 = mpv;
+ws-icon-6 = pdf;
+ws-icon-7 = mon;
+
 type = internal/i3
 format = <label-mode> <label-state>
 index-sort = true
+format-foreground = ${colors.black}
 
-label-focused-font = 4
-label-unfocused-font = 4
-label-urgent-font = 4
-label-visible-font = 4 
+label-focused-font = 2
+label-unfocused-font = 1
+label-urgent-font = 1
+label-visible-font = 1 
 
-label-focused = 
+label-focused = %icon% %name% 
 ;label-focused = %index%
-;label-focused-background = ${colors.gray}
+label-focused-background = ${backcols.i3b}
 label-focused-padding = 1
+label-focused-underline = ${colors.black}
 
-label-unfocused = 
+label-unfocused = %icon%
 ;label-unfocused = %index%
 label-unfocused-padding = 1
-;label-unfocused-background = ${colors.black}
-label-unfocused-underlinde = ${colors.white}
+label-unfocused-background = ${backcols.i3f}
+label-unfocused-underline = ${colors.black}
 
-label-urgent = 
+label-urgent = %icon%
 ;label-urgent = %index%!
 ;label-urgent-background = ${colors.red}
 label-urgent-padding = 1
 label-urgent-foreground = ${colors.red}
 
-label-visible = 
+label-visible = %icon%
 ;label-visible = %index%
 label-visible-foreground = ${colors.white}
 label-visible-padding = 1
@@ -130,8 +149,8 @@ label-visible-padding = 1
 [module/cmus]
 type = custom/script
 exec = eval $HOME/.config/polybar/cmus
-tail = true
-
+interval = 10
+label-font = 3
 label-underline = ${colors.white}
 label-offline =  no music
 label-offline-foreground = ${colors.gray}
@@ -140,11 +159,9 @@ label-offline-foreground = ${colors.gray}
 
 [module/backlight]
 type = internal/xbacklight
-
 format = <label>
 label =  %percentage%%
-
-label-underline = ${colors.gray}
+label-underline = ${colors.white}
 
 [module/cpu]
 format-label = internal/cpu
@@ -152,8 +169,6 @@ format-label = internal/cpu
 format = <label> <ramp-coreload>
 format-foreground = #66cc99
 format-background = #2a5c45
-format-underline = #60eaa5
-format-overline = #60eaa5
 format-padding = 2
 ramp-coreload-0 = ▁
 ramp-coreload-1 = ▂
@@ -174,16 +189,17 @@ padding= 2
 
 [module/memory]
 type = internal/memory
-interval = 2
+interval = 20
 
 label = %{F${colors.white}  %percentage_used%% %{F-}
-label-underline = ${colors.red}
+label-underline = ${colors.white}
 label-foreground = ${colors.white}
-format-padding = 2
-format-background = #cb66cc
+format-background = ${backcols.mt}
+format-padding = 1
+; format-background = #cb66cc
 format-foreground = #ffe3ff
 format-underline = #e58de6
-format-overline = #e58de6
+; format-overline = #e58de6
 
 [module/wlan]
 type = internal/network
@@ -205,7 +221,7 @@ label-disconnected-foreground = ${colors.gray}
 [module/eth]
 type = internal/network
 interface = enp0s31f6
-interval = 3.0
+interval = 30
 
 format-connected-padding = 1
 format-disconnected-padding = 1
@@ -221,47 +237,31 @@ label-disconnected-foreground = ${colors.gray}
 [module/date]
 type = internal/date
 date-alt =   %A %H:%M 
-date =   %b/%d/%y %H:%M 
-interval = 5
-format-underline = ${colors.white}
-;format-background = ${colors.black}
+date =   %b %d %H:%M 
+interval = 30
 format-foreground = ${colors.white}
+format-background = ${backcols.hot}
+format-underline = ${colors.black}
 format-padding = 1
-
+label-font = 3
 
 [module/volume]
 type = internal/volume
 
 format-volume = <ramp-volume> <label-volume>
-label-volume-underline = ${colors.blue}
+format-volume-background = ${backcols.i3f}
+format-volume-underline = ${colors.black}
+format-volume-padding = 1
 label-volume = %percentage%%
-label-volume-foreground = ${root.foreground}
-
+label-volume-foreground = ${colors.black}
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
-ramp-volume-underline = ${colors.blue}
+ramp-volume-foreground = ${colors.black}
 
 
 label-muted =  sound muted
 label-muted-foreground = ${colors.gray}
-
-bar-volume-width = 5
-bar-volume-foreground-0 = ${colors.green}
-bar-volume-foreground-1 = ${colors.green}
-bar-volume-foreground-2 = ${colors.green}
-bar-volume-foreground-3 = ${colors.green}
-bar-volume-foreground-4 = ${colors.yellow}
-bar-volume-foreground-5 = ${colors.red}
-bar-volume-gradient = false
-bar-volume-indicator = 
-bar-volume-indicator-font = 4
-bar-volume-indicator-foreground = ${colors.white}
-bar-volume-fill = 
-bar-volume-fill-font = 4
-bar-volume-empty = 
-bar-volume-empty-font = 4
-bar-volume-empty-foreground = ${colors.gray}
 
 [module/battery1]
 type = internal/battery
@@ -269,11 +269,11 @@ battery = BAT1
 adapter = AC
 full-at = 98
 
-format-charging = <animation-charging> <label-charging>
+format-charging = <animation-charging><label-charging>
 format-charging-underline = ${colors.green}
 format-charging-padding = 1
 
-format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = <ramp-capacity><label-discharging>
 format-discharging-underline = ${colors.yellow}
 format-discharging-padding = 1
 
@@ -331,23 +331,20 @@ animation-charging-framerate = 500
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 65
+warn-temperature = 55
 
 format = <label>
 format-underline = ${colors.white}
+format-background = ${backcols.mt}
 format-warn = <label-warn>
+format-warn-background = ${backcols.hot}
 format-warn-underline = ${colors.red}
 
 format-padding = 1
 format-warn-padidng = 1
 
 label =  %temperature%
-label-warn =  %temperature%
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = #55
+label-warn =  %temperature%
 
 
 [module/menu0]
@@ -355,7 +352,7 @@ type = custom/menu
 
 format = <label-toggle> <menu>
 format-underline = ${colors.white}
-format-padding = 1
+format-padding = 0
 
 menu-0-0 =  shutdown
 menu-0-0-exec = shutdown now
@@ -366,6 +363,81 @@ menu-0-2 =   cancel
 
 label-open =   
 label-close =
+
+
+[module/mpd]
+type = internal/mpd
+
+host = 127.0.0.1
+port = 6609
+
+label-font = 2
+label-underline = ${colors.white}
+label-offline-foreground = ${colors.gray}
+; Seconds to sleep between progressbar/song timer sync
+; Default: 1
+; interval = 2
+; Available tags:
+;   <label-song> (default)
+;   <label-time>
+;   <bar-progress>
+;   <toggle> - gets replaced with <icon-(pause|play)>
+;   <toggle-stop> - gets replaced with <icon-(stop|play)>
+;   <icon-random>
+;   <icon-repeat>
+;   <icon-repeatone>
+;   <icon-prev>
+;   <icon-stop>
+;   <icon-play>
+;   <icon-pause>
+;   <icon-next>
+;   <icon-seekb>
+;   <icon-seekf>
+format-online = <label-time> <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>  <label-song>
+
+; Available tags:
+;   <label-offline>
+;format-offline = <label-offline>
+
+; Available tokens:
+;   %artist%
+;   %album%
+;   %date%
+;   %title%
+; Default: %artist% - %title%
+label-song =  %artist% - %title%
+
+; Available tokens:
+;   %elapsed%
+;   %total%
+; Default: %elapsed% / %total%
+;label-time = %elapsed% / %total%
+
+; Available tokens:
+;   None
+label-offline = 🎜 mpd is offline
+; Only applies if <icon-X> is used
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-seekb = 
+icon-seekf = 
+icon-random = 
+icon-repeat = 
+icon-repeatone = 
+
+; Used to display the state of random/repeat/repeatone
+; Only applies if <icon-[random|repeat|repeatone]> is used
+toggle-on-foreground = #ff
+toggle-off-foreground = #55
+
+; Only applies if <bar-progress> is used
+bar-progress-width = 45
+bar-progress-indicator = |
+bar-progress-fill = ─
+bar-progress-empty = ─
 
 ; [module/weather]
 ; type = custom/script

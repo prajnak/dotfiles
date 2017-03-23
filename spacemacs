@@ -51,8 +51,6 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
-                                      (asana :location (recipe :fetcher github :repo "jcpetkovich/emacs-asana"))
-                                      symon
                                       writeroom-mode
                                       polymode
                                       clues-theme
@@ -115,7 +113,7 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
 
-   dotspacemacs-themes '(solarized-light
+   dotspacemacs-themes '(ir-black
                          adwaita
                          tango-dark
                          spacemacs-light
@@ -123,7 +121,7 @@ values."
                          clues
                          solarized-dark
                          leuven
-                         ir-black
+                         solarized-light
                          monokai
                          zenburn)
    ;; If non nil the cursor color matches the state color in GUI Emacs.

@@ -5,7 +5,8 @@
 # foreground      = #34302d
 # foreground_bold = #34302d
 # cursor          = #34302d
-# background      = #f5e7de
+# background      = rgba(0,31,33, 0.9)
+# # background      = #f5e7de
 
 # # black
 # color0  = #666661
@@ -39,92 +40,94 @@
 # color7  = #34302d
 # color15 = #4c4742
 
-
-
-# solarized-dark scheme
+# tomorrow-dark colorscheme
 [colors]
 
 # special
-foreground      = #93a1a1
-foreground_bold = #93a1a1
-cursor          = #93a1a1
-# background      = #002b36
-background      = rgba(0,43,54,0.9)
+foreground      = #c5c8c6
+foreground_bold = #c5c8c6
+cursor          = #c5c8c6
+background      = rgba(29,31,33, 0.8)
 
 # black
-color0  = #002b36
-color8  = #657b83
+color0  = #1d1f21
+color8  = #969896
 
 # red
-color1  = #dc322f
-color9  = #dc322f
+color1  = #cc6666
+color9  = #cc6666
 
 # green
-color2  = #859900
-color10 = #859900
+color2  = #b5bd68
+color10 = #b5bd68
 
 # yellow
-color3  = #b58900
-color11 = #b58900
+color3  = #f0c674
+color11 = #f0c674
 
 # blue
-color4  = #268bd2
-color12 = #268bd2
+color4  = #81a2be
+color12 = #81a2be
 
 # magenta
-color5  = #6c71c4
-color13 = #6c71c4
+color5  = #b294bb
+color13 = #b294bb
 
 # cyan
-color6  = #2aa198
-color14 = #2aa198
+color6  = #8abeb7
+color14 = #8abeb7
 
 # white
-color7  = #93a1a1
-color15 = #fdf6e3
+color7  = #c5c8c6
+color15 = #ffffff
 
 
-[options]
-font = Roboto Mono for Powerline 10
-clickable_url = true
-browser = firefox
 
+# # solarized-dark scheme
 # [colors]
 
 # # special
-# foreground      = #d0d0d0
-# foreground_bold = #d0d0d0
-# cursor          = #d0d0d0
-# background      = rgba(0,0,0,0.8)
+# foreground      = #93a1a1
+# foreground_bold = #93a1a1
+# cursor          = #93a1a1
+# # background      = #002b36
+# background      = rgba(0,43,54,0.9)
 
 # # black
-# color0  = #000000
-# color8  = #808080
+# color0  = #002b36
+# color8  = #657b83
 
 # # red
-# color1  = #ff0000
-# color9  = #ff0000
+# color1  = #dc322f
+# color9  = #dc322f
 
 # # green
-# color2  = #33ff00
-# color10 = #33ff00
+# color2  = #859900
+# color10 = #859900
 
 # # yellow
-# color3  = #ff0099
-# color11 = #ff0099
+# color3  = #b58900
+# color11 = #b58900
 
 # # blue
-# color4  = #0066ff
-# color12 = #0066ff
+# color4  = #268bd2
+# color12 = #268bd2
 
 # # magenta
-# color5  = #cc00ff
-# color13 = #cc00ff
+# color5  = #6c71c4
+# color13 = #6c71c4
 
 # # cyan
-# color6  = #00ffff
-# color14 = #00ffff
+# color6  = #2aa198
+# color14 = #2aa198
 
 # # white
-# color7  = #d0d0d0
-# color15 = #ffffff
+# color7  = #93a1a1
+# color15 = #fdf6e3
+
+
+[options]
+font = Roboto Mono for Powerline 11
+clickable_url = true
+browser = google-chrome
+
