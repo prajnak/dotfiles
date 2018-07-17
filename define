@@ -2,3 +2,4 @@
 w=$(sdcv -u $(sdcv -l | sed -n '1!p' | sed 's/.\{5\}$//' | rofi -show -dmenu -p Dictionary ) -n $(echo | rofi -show -dmenu -p "Word: " ))
 echo "$w" | sed -n '1,4!p' | rofi -show -dmenu -p Definition -columns 1 -bw 100 -padding 0 -l 12
 
+# TODO MAKE THIS WORK AGGAIN ON DEBIAN
